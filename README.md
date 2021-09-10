@@ -14,3 +14,6 @@ https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-
 
 Unix Run UVICORN
 uvicorn app:app --host="0.0.0.0" --port=8000
+
+```GUNICORN```
+ gunicorn -k uvicorn.workers.UvicornWorker --bind "0.0.0.0:8000" --log-level debug main:app
