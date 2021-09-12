@@ -1,0 +1,19 @@
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/var/www/project
+ExecStart=/var/www/project/venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 4 \
+          -k uvicorn.workers.UvicornWorker \
+          -b unix:/var/www/project/gunicorn.sock \
+          -m 007 \
+          --timeout 1200 \
+          main:app
+
+[Install]
+WantedBy=multi-user.target
