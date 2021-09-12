@@ -71,3 +71,19 @@ server_name <ip address>;
         }
 }
 
+Below command to restart the services,
+ 
+``` sudo systemctl daemon-reload
+sudo systemctl restart gunicorn
+sudo systemctl restart gunicorn.service
+sudo systemctl restart gunicorn.socket
+sudo systemctl restart nginx
+
+sudo systemctl enable gunicorn
+sudo systemctl enable gunicorn.service
+sudo systemctl enable gunicorn.socket
+sudo systemctl enable nginx```
+ 
+ Related Stack Overflow,
+ 
+ https://stackoverflow.com/questions/67655725/python-fastapi-gunicorn-nginx-oracle-cloud-vm-website-not-showing
