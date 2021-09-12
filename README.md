@@ -84,7 +84,8 @@ server_name <ip address>;
 
 Below command to restart the services,
  
-``` sudo systemctl daemon-reload
+```
+ sudo systemctl daemon-reload
 sudo systemctl restart gunicorn
 sudo systemctl restart gunicorn.service
 sudo systemctl restart gunicorn.socket
