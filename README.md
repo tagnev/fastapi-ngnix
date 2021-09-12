@@ -33,7 +33,7 @@ uvicorn app:app --host="0.0.0.0" --port=8000
         }
 ```
 
-3. Create gunicorn.service file in /etc/systemd/system
+3. Create gunicorn.service & gunicorn.socket file in /etc/systemd/system
  Below is the content,
  [root@centos-s-1vcpu-1gb-sfo3-01 system]# cat gunicorn.service
 [Unit]
@@ -52,9 +52,22 @@ ExecStart=/var/www/project/venv/bin/gunicorn \
           -m 007 \
           --timeout 1200 \
           main:app
+  
 
 [Install]
 WantedBy=multi-user.target
+
+        
+    --> gunicorn.socket      
+    ```[Unit]
+Description=gunicorn socket
+
+[Socket]
+ListenStream=/run/gunicorn.sock
+
+[Install]
+WantedBy=sockets.target
+```
 
 4. create gunicorn.conf under /etc/nginx/conf.d
 
