@@ -4,28 +4,28 @@ Install Python & Other packages in Centos
 
 https://computingforgeeks.com/how-to-install-python-3-on-centos/
 
-##Install GIT
+## Install GIT
 
 https://www.digitalocean.com/community/tutorials/how-to-install-git-on-centos-7
 
-##Install NGNIX
+## Install NGNIX
 
 https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-8
 
-##Unix Run UVICORN
+# #Unix Run UVICORN
 uvicorn app:app --host="0.0.0.0" --port=8000
 
 ```GUNICORN```
  gunicorn -k uvicorn.workers.UvicornWorker --bind "0.0.0.0:8000" --log-level debug main:app
  
- ##NGNIX Steps:
- ##1. Create proxy_params in /etc/nginx. Below is the content
+ ## NGNIX Steps:
+ ## 1. Create proxy_params in /etc/nginx. Below is the content
       proxy_set_header Host $http_host;
      proxy_set_header X-Real-IP $remote_addr;
      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
      proxy_set_header X-Forwarded-Proto $scheme;
 
- ##2.  nginx conf file
+ ## 2.  nginx conf file
  
  ```     location / {
                 include proxy_params;
@@ -33,7 +33,7 @@ uvicorn app:app --host="0.0.0.0" --port=8000
         }
 ```
 
-##3. Create gunicorn.service & gunicorn.socket file in /etc/systemd/system
+## 3. Create gunicorn.service & gunicorn.socket file in /etc/systemd/system
  Below is the content,
  [root@centos-s-1vcpu-1gb-sfo3-01 system]# cat gunicorn.service
 [Unit]
@@ -67,7 +67,7 @@ ListenStream=/run/gunicorn.sock
 WantedBy=sockets.target
 
 
-##4. create gunicorn.conf under /etc/nginx/conf.d
+## 4. create gunicorn.conf under /etc/nginx/conf.d
 
 server {
 listen 8000;
