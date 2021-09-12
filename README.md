@@ -56,4 +56,18 @@ ExecStart=/var/www/project/venv/bin/gunicorn \
 [Install]
 WantedBy=multi-user.target
 
+4. create gunicorn.conf under /etc/nginx/conf.d
+
+server {
+listen 8000;
+server_name <ip address>;
+
+        location / {
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_pass http://unix:/run/gunicorn.sock;
+        }
+}
 
